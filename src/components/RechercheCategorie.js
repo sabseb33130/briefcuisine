@@ -30,11 +30,14 @@ export default function RechercheCategorie() {
     }, [categorie])
 
     const vignetteCategorie = data?.categories.map((data, i) =>
-        <div onClick={() => setCategorie(data?.strCategory) } key={i} className="card m-2 w-33 col-4" style={{ width: 25 + "rem" }}>
-            <h3>{data?.strCategory}</h3>
-            <div className="card-body d-flex flex-wrap">
+        <div key={i} className="card m-2 w-33 col-4" style={{ width: 25 + "rem" }}>
+            <a href={`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${data?.strCategory}`}>
+                <h3>{data?.strCategory}</h3>
+                <div className="card-body d-flex flex-wrap">
+                    <img src={data?.strCategoryThumb} className="card-img align-content-around" alt={data?.strCategory} />
+                </div></a>
+            <div>
                 <p className="card-text">{data?.strCategoryDescription}</p>
-                <img src={data?.strCategoryThumb} className="card-img align-content-around" alt={data?.strCategory} />
             </div>
         </div>
     )
@@ -58,7 +61,7 @@ export default function RechercheCategorie() {
         <div className="text-center">
             <div>
                 <h2>Categories</h2>
-                <select className="form-select" id="floatingSelect" aria-label="Floating label select example">
+                <select className="form-select w-25 ms-3" id="floatingSelect" aria-label="Floating label select example">
                     <option>Selectionnez la catégorie de votre recette :</option>
                     {selector}
                 </select>
