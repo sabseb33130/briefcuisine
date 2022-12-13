@@ -1,22 +1,11 @@
 import { useState, useEffect } from "react";
-export default function RechercheCategorie() {
+export default function RechercheCategorie(props) {
 
-    const [data, setData] = useState(undefined)
+    const [data, setData] = useState(props?.data)
 
     const [categorie, setCategorie] = useState("")
 
     const [list, setList] = useState(undefined)
-
-    useEffect(() => {
-        async function fetchData() {
-            const response = await fetch('https://www.themealdb.com/api/json/v1/1/categories.php');
-            const responseJson = await (response.json());
-            //console.log(responseJson)
-            setData(responseJson)
-        }
-        fetchData();
-
-    }, []);
 
     useEffect(() => {
 
@@ -29,7 +18,7 @@ export default function RechercheCategorie() {
 
     }, [categorie])
 
-    const vignetteCategorie = data?.categories.map((data, i) =>
+    const vignetteCategorie = data.categories.map((data, i) =>
         <div key={i} className="card m-2 w-33 col-4" style={{ width: 25 + "rem" }}>
             <a href={`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${data?.strCategory}`}>
                 <h3>{data?.strCategory}</h3>
@@ -53,15 +42,15 @@ export default function RechercheCategorie() {
         </div>
     )
 
-    const selector = data?.categories.map((data, i) => <option key={i} onClick={() => setCategorie(data?.strCategory)} value={i}>{data?.strCategory}</option>)
+    const selector = data?.categories.map((data, i) => <option key={i} value={data.strCategory}>{data?.strCategory}</option>)
 
-    /*     const listRecipeClicked = list?.map((data, i) => <p key={i}>{data?.strMeal}</p>) */
+    /*const listRecipeClicked = list?.map((data, i) => <p key={i}>{data?.strMeal}</p>) */
 
     return (
         <div className="text-center">
             <div>
                 <h2>Categories</h2>
-                <select className="form-select w-25 ms-3" id="floatingSelect" aria-label="Floating label select example">
+                <select onClick={(e) => setCategorie(e.target.value)} className="form-select w-25 ms-3" id="floatingSelect" aria-label="Floating label select example">
                     <option>Selectionnez la catégorie de votre recette :</option>
                     {selector}
                 </select>
