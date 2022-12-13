@@ -45,6 +45,7 @@ export default function RechercheCategorie(props) {
     const selector = data?.categories.map((data, i) => <option key={i} value={data.strCategory}>{data?.strCategory}</option>)
 
     /*const listRecipeClicked = list?.map((data, i) => <p key={i}>{data?.strMeal}</p>) */
+    if (categorie === "Categorie") { props.setrubrique("Categorie") }; // tentative de reinitialisation page categorie
 
     return (
         <div className="text-center">
@@ -52,6 +53,7 @@ export default function RechercheCategorie(props) {
                 <h2>Categories</h2>
                 <select onClick={(e) => setCategorie(e.target.value)} className="form-select w-25 ms-3" id="floatingSelect" aria-label="Floating label select example">
                     <option>Selectionnez la catégorie de votre recette :</option>
+                    {<option defaultValue="Categorie">Ensemble des catégories</option>}
                     {selector}
                 </select>
                 <div>
