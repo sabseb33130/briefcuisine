@@ -10,7 +10,7 @@ export default function RechercheIngredient() {
       const responseJson = await response.json();
       //console.log(responseJson)
 
-      console.log(responseJson);
+      //console.log(responseJson);
       setRandom(responseJson);
     }
     fetchData();

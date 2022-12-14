@@ -1,12 +1,12 @@
 export default function TriByInput({ input,setStatut }) {
 
     //console.log(input.meals[0].strMeal); verification de l'emplacement de la donnée
-    const recipe = input.meals[0];
+    const recipe = input?.meals[0];
 
-    /* const newRecipe = [...recipe]; non fctionnel car recipe non iterable !!voir console
+    /*const newRecipe = [...recipe]; //non fctionnel car recipe non iterable !!voir console
     console.log(newRecipe);
-    const ingredients = newRecipe.filter((data,i)=> recipe.includes("strIngredient"))
-    console.log(ingredients); tentative de creation de tableau pour affichage ingredient*/
+     const ingredients = newRecipe.filter((data,i)=> recipe.includes("strIngredient"))
+    console.log(ingredients); //tentative de creation de tableau pour affichage ingredient */
 
     let ingredients = [];
     let measures = [];
@@ -37,21 +37,21 @@ export default function TriByInput({ input,setStatut }) {
     
     return (
         <div className="container justify-content-center mx-auto inline-flex row row-cols-2">
-        <div className="card" style={{ width: 75 + "%" }}>
-            <h2 className="card-title">{recipe.strMeal}</h2>
-            <img src={recipe.strMealThumb} className="card-img-top" alt={input.strMeal} />
+        
+            <h2 className="col">{recipe.strMeal}</h2>
+            <img src={recipe.strMealThumb} className="border-radius-15" alt={input.strMeal} />
             <ul className="list-group list-group-flush">
                 <li className="list-group-item"><h4>Measures & Ingredients</h4></li>
                 {showMeasure}
             </ul>
-            <div className="card-body">
+            <div>
                 <h4><p className="card-text">Instructions</p></h4>
                 <p className="card-text">{recipe.strInstructions}</p>
             </div>
-            <div className="card-body">
+            <div>
                 <a href={recipe.strYoutube} className="card-link">Demonstration</a>
                 <a href={recipe.strSource} className="card-link">Source</a>
             </div>
-        </div></div>
+        </div>
     )
 }
