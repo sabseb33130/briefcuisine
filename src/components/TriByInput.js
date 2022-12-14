@@ -2,10 +2,7 @@ export default function TriByInput({ input }) {
 
     //console.log(input.meals[0].strMeal); verification de l'emplacement de la donnée
     const recipe = input?.meals[0];
-    
-    const addFavoris=(e)=>(localStorage.setItem("stockage", JSON.stringify(input)));
-   
-    
+
     /*const newRecipe = [...recipe]; //non fctionnel car recipe non iterable !!voir console
     console.log(newRecipe);
     const ingredients = newRecipe.filter((data,i)=> recipe.includes("strIngredient"))
@@ -32,7 +29,6 @@ export default function TriByInput({ input }) {
 
     for (let i = 0; i < lg; i++) {
         ingredientsAndMeasures.push(measures[i] + " of " + ingredients[i])
-        
     }
 
     //console.log(ingredientsAndMeasures); //test de la donnée
@@ -44,11 +40,22 @@ export default function TriByInput({ input }) {
             <div className="mt-3">
                 <h3 className="font-weight-bold text-danger">{recipe.strMeal}</h3>
             </div>
-            <div>
-                <a href={recipe.strYoutube} className="card-link">Demonstration</a>
-                <a href={recipe.strSource} className="card-link">Source</a>
-            </div>
-            <button onClick={addFavoris}>Favoris</button>
-        </div>
+            <div className="container justify-content-center mx-auto row align-items-center">
+                <img src={recipe.strMealThumb} className="col-4 border-radius-15" alt={input.strMeal}/>
+                <div className="col-8 row">
+                <ul className="list-group list-group-flush">
+                    <li className="list-group-item"><h4>Measures & Ingredients</h4></li>
+                    {showMeasure}
+                </ul>
+                <div className="row">
+                    <h4 className="col"><p className="card-text">Instructions</p></h4>
+                    <p className="card-text">{recipe.strInstructions}</p>
+                </div></div>
+                <div>
+                    <a href={recipe.strYoutube} className="card-link">Demonstration</a>
+                    <br />
+                    <a href={recipe.strSource} className="card-link">Source</a>
+                </div>
+            </div></div>
     )
 }
