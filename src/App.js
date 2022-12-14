@@ -23,7 +23,7 @@ function App() {
               "https://www.themealdb.com/api/json/v1/1/search.php?s=a"
             );
             const responseJson = await response.json();
-            //console.log(responseJson)
+            //console.log(responseJson) 
       
             //console.log(responseJson);
             setRandom(responseJson);
