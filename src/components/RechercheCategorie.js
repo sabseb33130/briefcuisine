@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import TriByInput from "./TriByInput";  //ne pas toucher  !!! pour essais divers et variés xD
 export default function RechercheCategorie(props) {
 
     const [data, setData] = useState(props?.data)
@@ -6,6 +7,8 @@ export default function RechercheCategorie(props) {
     const [categorie, setCategorie] = useState("")
 
     const [list, setList] = useState(undefined)
+
+    const[input,setInput] =useState("") //ne pas toucher utile pour essai
 
     useEffect(() => {
 
@@ -17,57 +20,72 @@ export default function RechercheCategorie(props) {
             .catch((error) => { console.log(error) });
 
     }, [categorie])
-
     const vignetteCategorie = data.categories.map((data, i) =>
-        <div key={i} className="card m-2 w-33 col-4" style={{ width: 25 + "rem" }}>
-            <a href={`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${data?.strCategory}`}>
+        <div onClick={(e) => setCategorie(data?.strCategory)} key={i} className="card m-2 w-33 col-4" style={{ width: 25 +"rem" ,cursor: "pointer"}}>
+            
                 <h3>{data?.strCategory}</h3>
                 <div className="card-body d-flex flex-wrap">
                     <img src={data?.strCategoryThumb} className="card-img align-content-around" alt={data?.strCategory} />
-                </div></a>
-            <div>
                 <p className="card-text">{data?.strCategoryDescription}</p>
-            </div>
+                </div>
+            
         </div>
     )
 
+    async function sendRecipe(idRecipe) {
+        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idRecipe}`);
+        const responseJson = await (response.json());
+        setInput(responseJson)
+        setCategorie("Recette") //ne pas toucher utile pour essai
+      }
+
     const vignetteRecette = list?.map((data, i) =>
-        <div key={i} className="card m-2 w-33 col-4" style={{ width: 21 + "rem" }}>
-            <a href={`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${data.idMeal}`}>
+        <div onClick={(e) => sendRecipe(data.idMeal)} ne pas toucher utile pour essai key={i} className="card m-2 w-33 col-4" style={{ width: 21 + "rem" ,cursor: "pointer"}}>
+            
                 <h3>{data.strMeal}</h3>
                 <img src={data.strMealThumb} className="card-img-top" alt={data.strMeal} />
                 <div className="card-body">
                     <p className="card-text">{data.idMeal}</p>
-                </div></a>
+                </div>
         </div>
     )
 
     const selector = data?.categories.map((data, i) => <option key={i} value={data.strCategory}>{data?.strCategory}</option>)
 
-    /*const listRecipeClicked = list?.map((data, i) => <p key={i}>{data?.strMeal}</p>) */
-    if (categorie === "Categorie") { props.setrubrique("Categorie") }; // tentative de reinitialisation page categorie
-
+    if (categorie === "Categorie") { setCategorie(undefined) }; 
+    
+    
+    /* function inputSubmit(e){
+        e.preventDefault();
+         // console.log(e.target[0].value);    !!! appelle de la valeur en target array[0], a noter je pense !!!!
+        
+        setInput("") // reboot du submit
+    } */
+    
     return (
         <div className="text-center">
             <div>
                 <h2>Categories</h2>
-                <select onClick={(e) => setCategorie(e.target.value)} className="form-select w-25 ms-3" id="floatingSelect" aria-label="Floating label select example">
+                <select onInput={(e) => setCategorie(e.target.value)} className="form-select w-25 ms-3" id="floatingSelect" aria-label="Floating label select example">
                     <option>Selectionnez la catégorie de votre recette :</option>
-                    {<option defaultValue="Categorie">Ensemble des catégories</option>}
+                    {<option value="Categorie">Ensemble des catégories</option>}
                     {selector}
                 </select>
-                <div>
+                {/* <form onSubmit={inputSubmit}>
                     <label className="me-3">Filtre à 1 ingrédient</label>
-                    <input type="text"></input>
-                </div>
+                    <input type="text" value={input} onChange={(e) => setInput(e.target.value)}></input>
+                    <input type="reset" Value="Reset" onClick={() => setInput("")}/>
+                </form> */}<h3>{categorie}</h3>
             </div>
             {!categorie && <div className="container justify-content-center mx-auto inline-flex row row-cols-2">
                 {vignetteCategorie}
             </div>}
 
-            {categorie !== undefined && <div className="container justify-content-center mx-auto inline-flex row row-cols-2">
-                {vignetteRecette}
-            </div>}
+            {(categorie !== undefined)&& <div className="container justify-content-center mx-auto inline-flex row row-cols-2">
+                {vignetteRecette}</div>}
+
+                {categorie === "Recette" && <TriByInput input={input}></TriByInput>}
+            
         </div>
     )
 
