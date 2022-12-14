@@ -1,4 +1,4 @@
-export default function TriByInput({ input, setStatut }) {
+export default function TriByInput({ input }) {
 
     //console.log(input.meals[0].strMeal); verification de l'emplacement de la donnée
     const recipe = input?.meals[0];
