@@ -10,7 +10,9 @@ export default function RechercheCategorie() {
 
     const [input, setInput] = useState("") //ne pas toucher utile pour essai
 
-    async function fetchData() {
+    useEffect(() => {
+
+        async function fetchData() {
         const response = await fetch(
             "https://www.themealdb.com/api/json/v1/1/categories.php"
         );
@@ -22,6 +24,9 @@ export default function RechercheCategorie() {
     }
     fetchData();
 
+
+    }, [])
+    
     useEffect(() => {
 
         fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${categorie}`)
@@ -77,7 +82,7 @@ export default function RechercheCategorie() {
     return (
         <div className="text-center">
             <div>
-                <h2>Categories</h2>
+                <h2>Categories</h2><h3>{categorie}</h3>
                 <select onInput={(e) => setCategorie(e.target.value)} className="form-select w-25 ms-3" id="floatingSelect" aria-label="Floating label select example">
                     <option>Selectionnez la catégorie de votre recette :</option>
                     {<option value="Categorie">Ensemble des catégories</option>}
@@ -87,7 +92,8 @@ export default function RechercheCategorie() {
                     <label className="me-3">Filtre à 1 ingrédient</label>
                     <input type="text" value={input} onChange={(e) => setInput(e.target.value)}></input>
                     <input type="reset" Value="Reset" onClick={() => setInput("")}/>
-                </form> */}<h3>{categorie}</h3>
+                </form> */}
+                
             </div>
             {!categorie && <div className="container justify-content-center mx-auto inline-flex row row-cols-2">
                 {vignetteCategorie}
