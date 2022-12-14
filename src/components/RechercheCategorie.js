@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import TriByInput from "./TriByInput";  //ne pas toucher  !!! pour essais divers et variés xD
+import AffichageRecette from "./AffichageRecette";  //ne pas toucher  !!! pour essais divers et variés xD
 export default function RechercheCategorie() {
 
     const [data, setData] = useState()
@@ -102,7 +102,7 @@ export default function RechercheCategorie() {
             {(categorie !== undefined) && <div className="container justify-content-center mx-auto inline-flex row row-cols-2">
                 {vignetteRecette}</div>}
 
-            {categorie === "Recette" && <TriByInput input={input}></TriByInput>}
+            {categorie === "Recette" && <AffichageRecette input={input}></AffichageRecette>}
 
         </div>
     )
