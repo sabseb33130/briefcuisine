@@ -1,24 +1,27 @@
-import { useEffect, useState } from 'react';
-import './App.css';
-import RechercheCategorie from './components/RechercheCategorie';
-import RechercheIngredient from './components/RechercheIngredient';
+import { useEffect, useState } from "react";
+import "./App.css";
+import { Favoris } from "./components/Favoris";
+import RechercheCategorie from "./components/RechercheCategorie";
+import RechercheIngredient from "./components/RechercheIngredient";
 
 function App() {
-  const [data, setData] = useState(undefined)
+  const [data, setData] = useState(undefined);
 
-  const [rubrique, setRubrique] = useState("")
+  const [rubrique, setRubrique] = useState("");
 
   useEffect(() => {
-
+    // eslint-disable-next-line default-case
     switch (rubrique) {
-      case "Categorie": <RechercheCategorie/>
+      case "Categorie":
+        <RechercheCategorie />;
 
         break;
-        case "Ingredient": <RechercheIngredient/>
-  
-          break;
+      case "Ingredient":
+        <RechercheIngredient />;
 
-          /* case "Nom": async function fetchData() {
+        break;
+
+      /* case "Nom": async function fetchData() {
             const response = await fetch(
               "https://www.themealdb.com/api/json/v1/1/search.php?s=a"
             );
@@ -31,23 +34,37 @@ function App() {
           fetchData();
     
             break; */
-            
     }
-
   }, [rubrique]);
-  const selector = ["Categorie", "Ingredient", "Nom"].map((data, i) => <option key={i} value={data}>{data}</option>)
+  const selector = ["Categorie", "Ingredient", "Nom"].map((data, i) => (
+    <option key={i} value={data}>
+      {data}
+    </option>
+  ));
 
   return (
     <div className="App">
-      {rubrique !== "Categorie" && <div>
-        <h2>Accueil</h2>
-        <select onClick={(e) => setRubrique(e.target.value)} className="form-select w-auto w-25 ms-3" id="floatingSelect" aria-label="Floating label select example">
-          <option>Rechercher par :</option>
-          {selector}
-        </select>
-      </div>}
-      {rubrique === "Categorie" && <RechercheCategorie data={data} setRubrique={setRubrique} />}
-      {rubrique === "Ingredient" && <RechercheIngredient data={data} setRubrique={setRubrique}/>}
+      {rubrique !== "Categorie" && (
+        <div>
+          <h2>Accueil</h2>
+          <Favoris/>
+          <select
+            onClick={(e) => setRubrique(e.target.value)}
+            className="form-select w-auto w-25 ms-3"
+            id="floatingSelect"
+            aria-label="Floating label select example"
+          >
+            <option>Rechercher par :</option>
+            {selector}
+          </select>
+        </div>
+      )}
+      {rubrique === "Categorie" && (
+        <RechercheCategorie data={data} setRubrique={setRubrique} />
+      )}
+      {rubrique === "Ingredient" && (
+        <RechercheIngredient data={data} setRubrique={setRubrique} />
+      )}
     </div>
   );
 }
