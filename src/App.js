@@ -1,37 +1,70 @@
-import { useEffect,useState } from 'react';
-import './App.css';
-import RechercheCategorie from './components/RechercheCategorie';
-import Navbar from './components/Navbar';
+import { useEffect, useState } from "react";
+import "./App.css";
+import { Favoris } from "./components/Favoris";
+import RechercheCategorie from "./components/RechercheCategorie";
+import RechercheIngredient from "./components/RechercheIngredient";
 
 function App() {
-  const [data, setData] = useState(undefined)
+  const [data, setData] = useState(undefined);
 
-  const [rubrique, setrubrique] = useState("")
+  const [rubrique, setRubrique] = useState("");
 
   useEffect(() => {
-      async function fetchData() {
-          const response = await fetch('https://www.themealdb.com/api/json/v1/1/categories.php');
-          const responseJson = await (response.json());
-          //console.log(responseJson)
-          setData(responseJson)
-      }
-      fetchData();
+    // eslint-disable-next-line default-case
+    switch (rubrique) {
+      case "Categorie":
+        <RechercheCategorie />;
 
-  }, []);
-  //const selector = data?.categories.map((data, i) => <option key={i} onClick={() => setCategorie(data?.strCategory)} value={i}>{data?.strCategory}</option>)
-  const selector = ["Categorie","Ingredient","Nom"].map((data, i) => <option key={i} onClick={() => setrubrique(data)} value={i}>{data}</option>)
+        break;
+      case "Ingredient":
+        <RechercheIngredient />;
+
+        break;
+
+      /* case "Nom": async function fetchData() {
+            const response = await fetch(
+              "https://www.themealdb.com/api/json/v1/1/search.php?s=a"
+            );
+            const responseJson = await response.json();
+            //console.log(responseJson) 
+      
+            //console.log(responseJson);
+            setRandom(responseJson);
+          }
+          fetchData();
+    
+            break; */
+    }
+  }, [rubrique]);
+  const selector = ["Categorie", "Ingredient", "Nom"].map((data, i) => (
+    <option key={i} value={data}>
+      {data}
+    </option>
+  ));
 
   return (
     <div className="App">
-      <Navbar/>
-            <div>
-                <h2>Accueil</h2>
-                <select className="form-select w-25 ms-3" id="floatingSelect" aria-label="Floating label select example">
-                    <option>Rechercher par :</option>
-                    {selector}
-                </select>
-                </div>
-      {rubrique === "Categorie" && <RechercheCategorie></RechercheCategorie>}
+      {rubrique !== "Categorie" && (
+        <div>
+          <h2>Accueil</h2>
+          <Favoris/>
+          <select
+            onClick={(e) => setRubrique(e.target.value)}
+            className="form-select w-auto w-25 ms-3"
+            id="floatingSelect"
+            aria-label="Floating label select example"
+          >
+            <option>Rechercher par :</option>
+            {selector}
+          </select>
+        </div>
+      )}
+      {rubrique === "Categorie" && (
+        <RechercheCategorie data={data} setRubrique={setRubrique} />
+      )}
+      {rubrique === "Ingredient" && (
+        <RechercheIngredient data={data} setRubrique={setRubrique} />
+      )}
     </div>
   );
 }
