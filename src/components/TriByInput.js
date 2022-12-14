@@ -2,7 +2,7 @@ export default function TriByInput({ input }) {
 
     //console.log(input.meals[0].strMeal); verification de l'emplacement de la donnée
     const recipe = input?.meals[0];
-
+    const addFavoris = (e)=>localStorage.setItem("stockage", JSON.stringify(input));
     /*const newRecipe = [...recipe]; //non fctionnel car recipe non iterable !!voir console
     console.log(newRecipe);
     const ingredients = newRecipe.filter((data,i)=> recipe.includes("strIngredient"))
@@ -56,6 +56,7 @@ export default function TriByInput({ input }) {
                     <br />
                     <a href={recipe.strSource} className="card-link">Source</a>
                 </div>
+                <button onClick={addFavoris}></button>
             </div></div>
     )
 }
