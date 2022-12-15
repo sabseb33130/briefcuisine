@@ -45,11 +45,11 @@ function App() {
 
   return (
     <div className="App">
+      <Navbar />
+      <h2>Accueil</h2>
+      <Favoris />
       {rubrique !== "Categorie" && (
         <div>
-          <Navbar/>
-          <h2>Accueil</h2>
-          <Favoris/>
           <select
             onClick={(e) => setRubrique(e.target.value)}
             className="form-select w-auto ms-3"
