@@ -40,7 +40,7 @@ export default function RechercheIngredient() {
 
   return (
     <div>
-      <select className="form-select w-25 ms-3">{selector1}</select>
+      <select className="form-select w-auto m-3">{selector1}</select>
       <div className="container justify-content-center mx-auto inline-flex row row-cols-2">
         {test}
       </div>

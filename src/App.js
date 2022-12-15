@@ -50,7 +50,7 @@ function App() {
           <Favoris/>
           <select
             onClick={(e) => setRubrique(e.target.value)}
-            className="form-select w-auto w-25 ms-3"
+            className="form-select w-auto ms-3"
             id="floatingSelect"
             aria-label="Floating label select example"
           >

@@ -1,35 +1,40 @@
+import "./AffichageRecette.css";
+
 export default function AffichageRecette({ input }) {
 
     //console.log(input.meals[0].strMeal); verification de l'emplacement de la donnée
     const recipe = input?.meals[0];
-    const addFavoris = (e)=>localStorage.setItem("stockage", JSON.stringify(input));
+
+    const addFavoris = (e) => localStorage.setItem("stockage", JSON.stringify(input));
 
     /*const newRecipe = [...recipe]; //non fctionnel car recipe non iterable !!voir console
-    console.log(newRecipe);
-    const ingredients = newRecipe.filter((data,i)=> recipe.includes("strIngredient"))
-    console.log(ingredients); //tentative de creation de tableau pour affichage ingredient */
+    console.log(newRecipe);*/
 
     let ingredients = [];
     let measures = [];
 
+    console.log(recipe);
+
     for (let i = 1; i < 21; i++) { // récupération des ingredients dans un seul array
-        if (eval(`recipe.strIngredient${i}`) !== "" || null || undefined) { ingredients.push(eval(`recipe.strIngredient${i}`)) }
-    };
+        ingredients.push(eval(`recipe.strIngredient${i}`))
+    }
+    let ingredientsFiltred = ingredients.filter(x => !!x); //tri de l'array sans "",null,undefined,NaN
 
     for (let i = 1; i < 21; i++) { // récupération des mesures dans un seul array
-        if (eval(`recipe.strMeasure${i}`) !== "" || null || undefined || `${""}` || ` `) { measures.push(eval(`recipe.strMeasure${i}`)) }
+        measures.push(eval(`recipe.strMeasure${i}`))
     };
+    let measuresFiltred = measures.filter(x => !!x)//tri de l'array sans "",null,undefined,NaN
 
-    console.log(eval(`recipe.strIngredient${12}`)); //test de la donnée
-    console.log(ingredients);
+    /* console.log(eval(`recipe.strIngredient${12}`)); //test de la donnée
+    console.log(ingredientsFiltred);
     console.log(eval(`recipe.strMeasure${15}`)); //test de la donnée
-    console.log(measures);
+    console.log(measuresFiltred); */
 
-    const lg = ingredients.length; // choix de lg de ingredient pour corriger le probleme de filtre sur measures, avec " " !!
+    const lg = ingredientsFiltred.length; // choix de lg de ingredient pour corriger le probleme de filtre sur measures, avec " " !!
     let ingredientsAndMeasures = [];
 
     for (let i = 0; i < lg; i++) {
-        ingredientsAndMeasures.push(measures[i] + " of " + ingredients[i])
+        ingredientsAndMeasures.push(measuresFiltred[i] + " of " + ingredientsFiltred[i])
     }
 
     //console.log(ingredientsAndMeasures); //test de la donnée
@@ -39,25 +44,28 @@ export default function AffichageRecette({ input }) {
     return (
         <div>
             <div className="mt-3">
-                <h3 className="font-weight-bold text-danger">{recipe.strMeal}</h3>
+                <h2 className="font-weight-bold text-danger">{recipe.strMeal}</h2>
             </div>
-            <div className="container justify-content-center mx-auto row align-items-center">
-                <img src={recipe.strMealThumb} className="col-4 border-radius-15" alt={input.strMeal}/>
-                <div className="col-8 row">
-                <ul className="list-group list-group-flush">
-                    <li className="list-group-item"><h4>Measures & Ingredients</h4></li>
-                    {showMeasure}
-                </ul>
-                <div className="row">
-                    <h4 className="col"><p className="card-text">Instructions</p></h4>
-                    <p className="card-text">{recipe.strInstructions}</p>
-                </div></div>
-                <div>
-                    <a href={recipe.strYoutube} className="card-link">Demonstration</a>
+            <div className="row display-noflex justify-content-md-center text-center m-5">
+                <div className="col">
+                    <img src={recipe.strMealThumb} className="col-12 rounded" alt={input.strMeal} />
+                    <a href={recipe.strYoutube}>Demonstration</a>
                     <br />
-                    <a href={recipe.strSource} className="card-link">Source</a>
+                    <a href={recipe.strSource}>Source</a>
+                    <div className="m-3"><button onClick={addFavoris}>Favoris</button>
+                    </div>
                 </div>
-                <button onClick={addFavoris}>Favoris</button>
-            </div></div>
+                <div className="col rounded border m-2">
+                    <ul className="list-group list-group-flush">
+                        <li className="list-group-item"><h4>Measures & Ingredients</h4></li>
+                        {showMeasure}
+                    </ul>
+                </div>
+                <div className="col rounded border w-auto m-2">
+                    <h4><p>Instructions</p></h4>
+                    <p className="w-100">{recipe.strInstructions}</p>
+                </div>
+            </div>
+        </div>
     )
 }

@@ -57,13 +57,10 @@ export default function RechercheCategorie() {
     }
 
     const vignetteRecette = list?.map((data, i) =>
-        <div onClick={(e) => sendRecipe(data.idMeal)} ne pas toucher utile pour essai key={i} className="card m-2 w-33 col-4" style={{ width: 21 + "rem", cursor: "pointer" }}>
+        <div onClick={(e) => sendRecipe(data.idMeal)} key={i} className="card m-2 w-33 col-4" style={{ width: 21 + "rem", cursor: "pointer" }}>
 
             <h3>{data.strMeal}</h3>
             <img src={data.strMealThumb} className="card-img-top" alt={data.strMeal} />
-            <div className="card-body">
-                <p className="card-text">{data.idMeal}</p>
-            </div>
         </div>
     )
 
@@ -83,7 +80,7 @@ export default function RechercheCategorie() {
         <div className="text-center">
             <div>
                 <h2>Categories</h2><h3>{categorie}</h3>
-                <select onInput={(e) => setCategorie(e.target.value)} className="form-select w-25 ms-3" id="floatingSelect" aria-label="Floating label select example">
+                <select onInput={(e) => setCategorie(e.target.value)} className="form-select w-auto ms-3" id="floatingSelect" aria-label="Floating label select example">
                     <option>Selectionnez la catégorie de votre recette :</option>
                     {<option value="Categorie">Ensemble des catégories</option>}
                     {selector}
