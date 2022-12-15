@@ -3,6 +3,7 @@ import "./App.css";
 import { Favoris } from "./components/Favoris";
 import RechercheCategorie from "./components/RechercheCategorie";
 import RechercheIngredient from "./components/RechercheIngredient";
+import Navbar from "./components/Navbar";
 
 function App() {
   const [data, setData] = useState(undefined);
@@ -46,6 +47,7 @@ function App() {
     <div className="App">
       {rubrique !== "Categorie" && (
         <div>
+          <Navbar/>
           <h2>Accueil</h2>
           <Favoris/>
           <select

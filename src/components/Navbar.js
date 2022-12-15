@@ -1,13 +1,16 @@
+import './Navbar.css';
+
 export default function Navbar() {
     return (
-        <nav class="navbar">
-            <form class="container-fluid justify-content-start">
-                
-                <button class="btn btn-outline-success me-2" type="button">Accueil</button>
-                <button class="btn btn-sm btn-outline-secondary" type="button">Catégories</button>
-                <button class="btn btn-sm btn-outline-secondary" type="button">Favories</button>
-            </form>
-        </nav>
+        <div>
+            <nav class="navbar">
+                <form class="container-fluid justify-content-start">
+                    <button class="btn btn-dark me-2" type="button">Accueil</button>
+                    <button class="btn btn-dark me-2" type="button">Catégories</button>
+                    <button class="btn btn-dark me-2" type="button">Favories</button>
+                </form>
+            </nav>
+            <h1 className='display-3 text-center'>RECETTES MORTELLES <img src='favicon.png'/></h1>
+        </div>
     )
 }
-//<img src="food.jpg" class="img-fluid" alt="food"/>
