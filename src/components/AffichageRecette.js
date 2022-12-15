@@ -47,12 +47,12 @@ export default function AffichageRecette({ input }) {
                 <h2 className="font-weight-bold text-danger">{recipe.strMeal}</h2>
             </div>
             <div className="row display-noflex justify-content-md-center text-center m-5">
-                <div className="col">
-                    <img src={recipe.strMealThumb} className="col-12 rounded" alt={input.strMeal} />
-                    <a href={recipe.strYoutube}>Demonstration</a>
+                <div className="col m-2">
+                    <img src={recipe.strMealThumb} className="col-12 rounded border" alt={input.strMeal} />
+                    <div className="bg-white"><a href={recipe.strYoutube}>Demonstration</a>
                     <br />
                     <a href={recipe.strSource}>Source</a>
-                    <div className="m-3"><button onClick={addFavoris}>Favoris</button>
+                    <div className="m-3"><button onClick={addFavoris}>Favoris</button></div>
                     </div>
                 </div>
                 <div className="col rounded border m-2">
@@ -61,7 +61,7 @@ export default function AffichageRecette({ input }) {
                         {showMeasure}
                     </ul>
                 </div>
-                <div className="col rounded border w-auto m-2">
+                <div className="col rounded border w-auto m-2 bg-white">
                     <h4><p>Instructions</p></h4>
                     <p className="w-100">{recipe.strInstructions}</p>
                 </div>
