@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/briefcuisine/static/css/main.eeb49c38.css",
-    "main.js": "/briefcuisine/static/js/main.a20371e3.js",
+    "main.js": "/briefcuisine/static/js/main.a9097bc9.js",
     "static/js/787.422c2b4d.chunk.js": "/briefcuisine/static/js/787.422c2b4d.chunk.js",
     "static/media/bg.jpg": "/briefcuisine/static/media/bg.b0955f6f1a9576047105.jpg",
     "static/media/food.jpg": "/briefcuisine/static/media/food.9ef5a5423f0b1621cb48.jpg",
     "index.html": "/briefcuisine/index.html",
     "main.eeb49c38.css.map": "/briefcuisine/static/css/main.eeb49c38.css.map",
-    "main.a20371e3.js.map": "/briefcuisine/static/js/main.a20371e3.js.map",
+    "main.a9097bc9.js.map": "/briefcuisine/static/js/main.a9097bc9.js.map",
     "787.422c2b4d.chunk.js.map": "/briefcuisine/static/js/787.422c2b4d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.eeb49c38.css",
-    "static/js/main.a20371e3.js"
+    "static/js/main.a9097bc9.js"
   ]
 }
