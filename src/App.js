@@ -6,6 +6,7 @@ import RechercheIngredient from "./components/RechercheIngredient";
 import Navbar from "./components/Navbar";
 import { Accueil } from "./components/Accueil";
 import { Footer } from "./components/Footer";
+import rechercheNom  from "./components/rechercheNom";
 
 function App() {
   const [data, setData] = useState(undefined);
@@ -33,6 +34,10 @@ function App() {
         <RechercheIngredient />;
 
         break;
+      case "Nom":
+        <rechercheNom />;
+
+        break;
 
       /* case "Nom": async function fetchData() {
             const response = await fetch(
@@ -57,9 +62,10 @@ function App() {
 
   return (
     <div className="App">
+        
       <Navbar setRubrique={setRubrique} />
 
-
+    
       <div>
         <select
           onClick={(e) => setRubrique(e.target.value)}
@@ -75,6 +81,7 @@ function App() {
 
 
       {rubrique === "Accueil" && <Accueil />}
+    
 
       {rubrique === "Favoris" && <Favoris />}
 
@@ -84,8 +91,8 @@ function App() {
       {rubrique === "Ingredients" &&
         <RechercheIngredient setRubrique={setRubrique} />
       }
-      <Footer />
-    </div>
+     <Footer />
+    </div> 
   );
 }
 
