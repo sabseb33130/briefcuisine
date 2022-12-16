@@ -4,11 +4,13 @@ import { Favoris } from "./components/Favoris";
 import RechercheCategorie from "./components/RechercheCategorie";
 import RechercheIngredient from "./components/RechercheIngredient";
 import Navbar from "./components/Navbar";
+import { Accueil } from "./components/Accueil";
+import { Footer } from "./components/Footer";
 
 function App() {
   const [data, setData] = useState(undefined);
 
-  const [rubrique, setRubrique] = useState("");
+  const [rubrique, setRubrique] = useState("Accueil");
 
   useEffect(() => {
     // eslint-disable-next-line default-case
@@ -45,9 +47,8 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar />
-      <h2>Accueil</h2>
-      <Favoris />
+      <Navbar setRubrique={setRubrique} />
+      
       {rubrique !== "Categorie" && (
         <div>
           <select
@@ -61,12 +62,15 @@ function App() {
           </select>
         </div>
       )}
-      {rubrique === "Categorie" && (
+      {rubrique === "Accueil" && <Accueil />}
+      {rubrique === "Favoris" && <Favoris />}
+      {rubrique === "Categorie" &&
         <RechercheCategorie data={data} setRubrique={setRubrique} />
-      )}
-      {rubrique === "Ingredient" && (
+      }
+      {rubrique === "Ingredients" &&
         <RechercheIngredient data={data} setRubrique={setRubrique} />
-      )}
+      }
+<Footer/>
     </div>
   );
 }
