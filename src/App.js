@@ -69,10 +69,13 @@ function App() {
           id="floatingSelect"
           aria-label="Floating label select example"
         >
-          <option>Rechercher par :</option>
+          <option value={"Accueil"}>Rechercher par :</option>
           {selector}
         </select>
       </div>
+
+
+
       {rubrique === "Accueil" && <Accueil />}
 
       {rubrique === "Favoris" && <Favoris />}
@@ -83,10 +86,7 @@ function App() {
       {rubrique === "Ingredients" &&
         <RechercheIngredient setRubrique={setRubrique} />
       }
-      {rubrique === "Nom" &&
-        <RechercheNom setRubrique={setRubrique} />
-      }
-      <Footer />
+>>>>>>> afb5ceea2604db65ade875605ec0ce5898c077a9
     </div>
   );
 }
