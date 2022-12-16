@@ -3,6 +3,7 @@ import "./App.css";
 import { Favoris } from "./components/Favoris";
 import RechercheCategorie from "./components/RechercheCategorie";
 import RechercheIngredient from "./components/RechercheIngredient";
+import RechercheNom from "./components/RechercheNom";
 import Navbar from "./components/Navbar";
 import { Accueil } from "./components/Accueil";
 import { Footer } from "./components/Footer";
@@ -37,7 +38,8 @@ function App() {
         <RechercheIngredient />;
 
         break;
-
+      case "Nom":
+        <RechercheNom />;
       /* case "Nom": async function fetchData() {
             const response = await fetch(
               "https://www.themealdb.com/api/json/v1/1/search.php?s=a"
@@ -88,7 +90,7 @@ function App() {
       {rubrique === "Ingredients" &&
         <RechercheIngredient setRubrique={setRubrique} />
       }
-      <Footer />
+>>>>>>> afb5ceea2604db65ade875605ec0ce5898c077a9
     </div>
   );
 }
