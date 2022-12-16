@@ -5,8 +5,8 @@ import RechercheCategorie from "./components/RechercheCategorie";
 import RechercheIngredient from "./components/RechercheIngredient";
 import Navbar from "./components/Navbar";
 import { Accueil } from "./components/Accueil";
-import { Footer } from "./components/Footer";
-import rechercheNom  from "./components/rechercheNom";
+
+import RechercheNom  from "./components/RechercheNom";
 
 function App() {
   const [data, setData] = useState(undefined);
@@ -35,7 +35,7 @@ function App() {
 
         break;
       case "Nom":
-        <rechercheNom />;
+        <RechercheNom />;
 
         break;
 
@@ -91,7 +91,7 @@ function App() {
       {rubrique === "Ingredients" &&
         <RechercheIngredient setRubrique={setRubrique} />
       }
-     <Footer />
+   
     </div> 
   );
 }
