@@ -6,7 +6,8 @@ import RechercheIngredient from "./components/RechercheIngredient";
 import Navbar from "./components/Navbar";
 import { Accueil } from "./components/Accueil";
 
-import RechercheNom  from "./components/RechercheNom";
+import RechercheNom from "./components/RechercheNom";
+import { Footer } from "./components/Footer";
 
 function App() {
   const [data, setData] = useState(undefined);
@@ -18,10 +19,12 @@ function App() {
   const [rubrique, setRubrique] = useState("Accueil");
 
   async function sendRecipe(idRecipe) {
-    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idRecipe}`);
-    const responseJson = await (response.json());
-    setInput(responseJson)
-    setCategorie("Recette") //ne pas toucher utile pour essai
+    const response = await fetch(
+      `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idRecipe}`
+    );
+    const responseJson = await response.json();
+    setInput(responseJson);
+    setCategorie("Recette"); //ne pas toucher utile pour essai
   }
   useEffect(() => {
     // eslint-disable-next-line default-case
@@ -38,20 +41,6 @@ function App() {
         <RechercheNom />;
 
         break;
-
-      /* case "Nom": async function fetchData() {
-            const response = await fetch(
-              "https://www.themealdb.com/api/json/v1/1/search.php?s=a"
-            );
-            const responseJson = await response.json();
-            //console.log(responseJson) 
-      
-            //console.log(responseJson);
-            setRandom(responseJson);
-          }
-          fetchData();
-    
-            break; */
     }
   }, [rubrique]);
   const selector = ["Categorie", "Ingredients", "Nom"].map((data, i) => (
@@ -62,10 +51,8 @@ function App() {
 
   return (
     <div className="App">
-        
       <Navbar setRubrique={setRubrique} />
 
-    
       <div>
         <select
           onClick={(e) => setRubrique(e.target.value)}
@@ -78,21 +65,27 @@ function App() {
         </select>
       </div>
 
-
-
       {rubrique === "Accueil" && <Accueil />}
-    
 
       {rubrique === "Favoris" && <Favoris />}
 
-      {rubrique === "Categorie" &&
-        <RechercheCategorie setRubrique={setRubrique} setCategorie={setCategorie} categorie={categorie} input={input} sendRecipe={sendRecipe} />
-      }
-      {rubrique === "Ingredients" &&
-        <RechercheIngredient setRubrique={setRubrique} />
-      }
-   
-    </div> 
+      {rubrique === "Categorie" && (
+        <RechercheCategorie
+       
+          setCategorie={setCategorie}
+          categorie={categorie}
+          input={input}
+          sendRecipe={sendRecipe}
+        />
+      )}
+      {rubrique === "Ingredients" && (
+        <RechercheIngredient/>
+      )}
+      {rubrique === "Nom" && (
+        <RechercheNom  />
+      )}
+      <Footer />
+    </div>
   );
 }
 

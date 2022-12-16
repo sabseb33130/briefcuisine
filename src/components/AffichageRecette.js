@@ -5,6 +5,16 @@ import "./AffichageRecette.css";
 export default function AffichageRecette({ input }) {
   //console.log(input.meals[0].strMeal); verification de l'emplacement de la donnée
   const recipe = input?.meals[0];
+  
+  const[favori,setFavori] = useState(JSON.parse(localStorage.getItem("stockage")) || []);
+
+  const addFavori = (e) =>{
+    const stockage =[...favori];
+    const newKey = new Date().getTime();
+    stockage.push({no:newKey, recipe:input});
+    setFavori(stockage);
+    localStorage.setItem("storage",JSON.stringify(stockage))
+  }
 
 
 
@@ -63,7 +73,7 @@ export default function AffichageRecette({ input }) {
             <br />
             <a href={recipe.strSource}>Source</a>
             <div className="m-3">
-              <button>Favoris</button>
+              <button onClick={addFavori}>Favoris</button>
             </div>
           </div>
         </div>
