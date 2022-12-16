@@ -65,7 +65,7 @@ function App() {
             id="floatingSelect"
             aria-label="Floating label select example"
           >
-            <option>Rechercher par :</option>
+            <option value={"Accueil"}>Rechercher par :</option>
             {selector}
           </select>
         </div>
@@ -79,6 +79,7 @@ function App() {
       {rubrique === "Ingredients" && 
         <RechercheIngredient setRubrique={setRubrique} />
       }
+      
     </div>
   );
 }
