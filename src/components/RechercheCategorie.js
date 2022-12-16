@@ -1,14 +1,12 @@
 import { useState, useEffect } from "react";
 import AffichageRecette from "./AffichageRecette";  //ne pas toucher  !!! pour essais divers et variés xD
-export default function RechercheCategorie() {
+export default function RechercheCategorie({input,categorie, setCategorie,sendRecipe}) {
 
     const [data, setData] = useState()
 
-    const [categorie, setCategorie] = useState("")
-
     const [list, setList] = useState(undefined)
 
-    const [input, setInput] = useState("") //ne pas toucher utile pour essai
+     //ne pas toucher utile pour essai
 
     useEffect(() => {
 
@@ -49,12 +47,7 @@ export default function RechercheCategorie() {
         </div>
     )
 
-    async function sendRecipe(idRecipe) {
-        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idRecipe}`);
-        const responseJson = await (response.json());
-        setInput(responseJson)
-        setCategorie("Recette") //ne pas toucher utile pour essai
-    }
+    
 
     const vignetteRecette = list?.map((data, i) =>
         <div onClick={(e) => sendRecipe(data.idMeal)} key={i} className="card m-2 w-33 col-4" style={{ width: 21 + "rem", cursor: "pointer" }}>
