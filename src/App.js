@@ -3,8 +3,11 @@ import "./App.css";
 import { Favoris } from "./components/Favoris";
 import RechercheCategorie from "./components/RechercheCategorie";
 import RechercheIngredient from "./components/RechercheIngredient";
+import RechercheNom from "./components/RechercheNom";
 import Navbar from "./components/Navbar";
-import {Accueil} from "./components/Accueil";
+import { Accueil } from "./components/Accueil";
+import { Footer } from "./components/Footer";
+
 function App() {
   const [data, setData] = useState(undefined);
 
@@ -19,7 +22,7 @@ function App() {
     const responseJson = await (response.json());
     setInput(responseJson)
     setCategorie("Recette") //ne pas toucher utile pour essai
-}
+  }
   useEffect(() => {
     // eslint-disable-next-line default-case
     switch (rubrique) {
@@ -31,7 +34,8 @@ function App() {
         <RechercheIngredient />;
 
         break;
-
+      case "Nom":
+        <RechercheNom />;
       /* case "Nom": async function fetchData() {
             const response = await fetch(
               "https://www.themealdb.com/api/json/v1/1/search.php?s=a"
@@ -55,49 +59,34 @@ function App() {
 
   return (
     <div className="App">
-<<<<<<< HEAD
       <Navbar setRubrique={setRubrique} />
-      
-      {rubrique !== "Categorie" && (
-=======
-      <Navbar setRubrique={setRubrique}/>
-      
-      
->>>>>>> afb5ceea2604db65ade875605ec0ce5898c077a9
-        <div>
-          <select
-            onClick={(e) => setRubrique(e.target.value)}
-            className="form-select w-auto ms-3"
-            id="floatingSelect"
-            aria-label="Floating label select example"
-          >
-            <option>Rechercher par :</option>
-            {selector}
-          </select>
-        </div>
-<<<<<<< HEAD
-      )}
+
+
+      <div>
+        <select
+          onClick={(e) => setRubrique(e.target.value)}
+          className="form-select w-auto ms-3"
+          id="floatingSelect"
+          aria-label="Floating label select example"
+        >
+          <option>Rechercher par :</option>
+          {selector}
+        </select>
+      </div>
       {rubrique === "Accueil" && <Accueil />}
+
       {rubrique === "Favoris" && <Favoris />}
+
       {rubrique === "Categorie" &&
-        <RechercheCategorie data={data} setRubrique={setRubrique} />
-      }
-      {rubrique === "Ingredients" &&
-        <RechercheIngredient data={data} setRubrique={setRubrique} />
-      }
-<Footer/>
-=======
-        {rubrique === "Accueil" && <Accueil/>}
-
-      {rubrique === "Favoris" && <Favoris/>}
-
-      {rubrique === "Categorie" && 
         <RechercheCategorie setRubrique={setRubrique} setCategorie={setCategorie} categorie={categorie} input={input} sendRecipe={sendRecipe} />
       }
-      {rubrique === "Ingredients" && 
+      {rubrique === "Ingredients" &&
         <RechercheIngredient setRubrique={setRubrique} />
       }
->>>>>>> afb5ceea2604db65ade875605ec0ce5898c077a9
+      {rubrique === "Nom" &&
+        <RechercheNom setRubrique={setRubrique} />
+      }
+      <Footer />
     </div>
   );
 }
