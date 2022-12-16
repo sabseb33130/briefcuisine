@@ -4,14 +4,22 @@ import { Favoris } from "./components/Favoris";
 import RechercheCategorie from "./components/RechercheCategorie";
 import RechercheIngredient from "./components/RechercheIngredient";
 import Navbar from "./components/Navbar";
-import { Accueil } from "./components/Accueil";
-import { Footer } from "./components/Footer";
-
+import {Accueil} from "./components/Accueil";
 function App() {
   const [data, setData] = useState(undefined);
 
+  const [input, setInput] = useState("");
+
+  const [categorie, setCategorie] = useState("");
+
   const [rubrique, setRubrique] = useState("Accueil");
 
+  async function sendRecipe(idRecipe) {
+    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idRecipe}`);
+    const responseJson = await (response.json());
+    setInput(responseJson)
+    setCategorie("Recette") //ne pas toucher utile pour essai
+}
   useEffect(() => {
     // eslint-disable-next-line default-case
     switch (rubrique) {
@@ -39,7 +47,7 @@ function App() {
             break; */
     }
   }, [rubrique]);
-  const selector = ["Categorie", "Ingredient", "Nom"].map((data, i) => (
+  const selector = ["Categorie", "Ingredients", "Nom"].map((data, i) => (
     <option key={i} value={data}>
       {data}
     </option>
@@ -47,9 +55,15 @@ function App() {
 
   return (
     <div className="App">
+<<<<<<< HEAD
       <Navbar setRubrique={setRubrique} />
       
       {rubrique !== "Categorie" && (
+=======
+      <Navbar setRubrique={setRubrique}/>
+      
+      
+>>>>>>> afb5ceea2604db65ade875605ec0ce5898c077a9
         <div>
           <select
             onClick={(e) => setRubrique(e.target.value)}
@@ -61,6 +75,7 @@ function App() {
             {selector}
           </select>
         </div>
+<<<<<<< HEAD
       )}
       {rubrique === "Accueil" && <Accueil />}
       {rubrique === "Favoris" && <Favoris />}
@@ -71,6 +86,18 @@ function App() {
         <RechercheIngredient data={data} setRubrique={setRubrique} />
       }
 <Footer/>
+=======
+        {rubrique === "Accueil" && <Accueil/>}
+
+      {rubrique === "Favoris" && <Favoris/>}
+
+      {rubrique === "Categorie" && 
+        <RechercheCategorie setRubrique={setRubrique} setCategorie={setCategorie} categorie={categorie} input={input} sendRecipe={sendRecipe} />
+      }
+      {rubrique === "Ingredients" && 
+        <RechercheIngredient setRubrique={setRubrique} />
+      }
+>>>>>>> afb5ceea2604db65ade875605ec0ce5898c077a9
     </div>
   );
 }

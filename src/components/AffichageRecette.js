@@ -1,11 +1,19 @@
+import { useEffect, useState } from "react";
 import "./AffichageRecette.css";
 
 export default function AffichageRecette({ input }) {
   //console.log(input.meals[0].strMeal); verification de l'emplacement de la donnée
   const recipe = input?.meals[0];
 
-  const addFavoris = (e) =>
-    localStorage.setItem("stockage", JSON.stringify(input));
+  const [favori,setFavori] = useState();
+
+let stockage = JSON.parse(localStorage.getItem('stockage')) || [];
+console.log(stockage);
+
+  if(favori){
+    stockage.push(input);
+    localStorage.setItem(`stockage`, JSON.stringify(stockage));
+}
 
   /*const newRecipe = [...recipe]; //non fctionnel car recipe non iterable !!voir console
     console.log(newRecipe);*/
@@ -13,7 +21,6 @@ export default function AffichageRecette({ input }) {
   let ingredients = [];
   let measures = [];
 
-  console.log(recipe);
 
   for (let i = 1; i < 21; i++) {
     // récupération des ingredients dans un seul array
@@ -66,7 +73,7 @@ export default function AffichageRecette({ input }) {
             <br />
             <a href={recipe.strSource}>Source</a>
             <div className="m-3">
-              <button onClick={addFavoris}>Favoris</button>
+              <button onClick={() => setFavori(true)}>Favoris</button>
             </div>
           </div>
         </div>
