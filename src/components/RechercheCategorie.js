@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import AffichageRecette from "./AffichageRecette";  //ne pas toucher  !!! pour essais divers et variés xD
-export default function RechercheCategorie({input,categorie, setCategorie,sendRecipe}) {
+
+export default function RechercheCategorie({memoire,input,categorie, setCategorie,sendRecipe}) {
 
     const [data, setData] = useState()
 
@@ -43,7 +44,6 @@ export default function RechercheCategorie({input,categorie, setCategorie,sendRe
                 <img src={data?.strCategoryThumb} className="card-img align-content-around" alt={data?.strCategory} />
                 <p className="card-text">{data?.strCategoryDescription}</p>
             </div>
-
         </div>
     )
 
@@ -92,7 +92,7 @@ export default function RechercheCategorie({input,categorie, setCategorie,sendRe
             {(categorie !== undefined) && <div className="container justify-content-center mx-auto inline-flex row row-cols-2">
                 {vignetteRecette}</div>}
 
-            {categorie === "Recette" && <AffichageRecette input={input}></AffichageRecette>}
+            {categorie === "Recette" && <AffichageRecette memoire={memoire} input={input}></AffichageRecette>}
 
         </div>
     )

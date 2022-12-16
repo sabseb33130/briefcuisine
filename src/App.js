@@ -7,6 +7,8 @@ import Navbar from "./components/Navbar";
 import { Accueil } from "./components/Accueil";
 import { Footer } from "./components/Footer";
 
+
+
 function App() {
   const [data, setData] = useState(undefined);
 
@@ -15,6 +17,8 @@ function App() {
   const [categorie, setCategorie] = useState("");
 
   const [rubrique, setRubrique] = useState("Accueil");
+
+
 
   async function sendRecipe(idRecipe) {
     const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idRecipe}`);
@@ -56,7 +60,7 @@ function App() {
   ));
 
   return (
-    <div className="App">
+    <div className="position-relative App">
       <Navbar setRubrique={setRubrique} />
 
 
@@ -76,7 +80,7 @@ function App() {
 
       {rubrique === "Accueil" && <Accueil />}
 
-      {rubrique === "Favoris" && <Favoris />}
+      {rubrique === "Favoris" && <Favoris sendRecipe={sendRecipe}/>}
 
       {rubrique === "Categorie" &&
         <RechercheCategorie setRubrique={setRubrique} setCategorie={setCategorie} categorie={categorie} input={input} sendRecipe={sendRecipe} />
