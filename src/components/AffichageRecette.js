@@ -1,19 +1,14 @@
 import { useEffect, useState } from "react";
 import "./AffichageRecette.css";
 
+
 export default function AffichageRecette({ input }) {
   //console.log(input.meals[0].strMeal); verification de l'emplacement de la donnée
   const recipe = input?.meals[0];
 
-  const [favori,setFavori] = useState();
 
-let stockage = JSON.parse(localStorage.getItem('stockage')) || [];
-console.log(stockage);
 
-  if(favori){
-    stockage.push(input);
-    localStorage.setItem(`stockage`, JSON.stringify(stockage));
-}
+
 
   /*const newRecipe = [...recipe]; //non fctionnel car recipe non iterable !!voir console
     console.log(newRecipe);*/
@@ -34,12 +29,7 @@ console.log(stockage);
   }
   let measuresFiltred = measures.filter((x) => !!x); //tri de l'array sans "",null,undefined,NaN
 
-  /* console.log(eval(`recipe.strIngredient${12}`)); //test de la donnée
-    console.log(ingredientsFiltred);
-    console.log(eval(`recipe.strMeasure${15}`)); //test de la donnée
-    console.log(measuresFiltred); */
-
-  const lg = ingredientsFiltred.length; // choix de lg de ingredient pour corriger le probleme de filtre sur measures, avec " " !!
+  const lg = ingredientsFiltred.length;
   let ingredientsAndMeasures = [];
 
   for (let i = 0; i < lg; i++) {
@@ -73,7 +63,7 @@ console.log(stockage);
             <br />
             <a href={recipe.strSource}>Source</a>
             <div className="m-3">
-              <button onClick={() => setFavori(true)}>Favoris</button>
+              <button>Favoris</button>
             </div>
           </div>
         </div>
