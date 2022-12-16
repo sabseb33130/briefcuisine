@@ -85,12 +85,12 @@ function App() {
       {rubrique === "Favoris" && <Favoris sendRecipe={sendRecipe}/>}
 
       {rubrique === "Categorie" &&
-        <RechercheCategorie setRubrique={setRubrique} setCategorie={setCategorie} categorie={categorie} input={input} sendRecipe={sendRecipe} />
+        <RechercheCategorie setCategorie={setCategorie} categorie={categorie} input={input} sendRecipe={sendRecipe} />
       }
       {rubrique === "Ingredients" &&
-        <RechercheIngredient setRubrique={setRubrique} />
+        <RechercheIngredient/>
       }
->>>>>>> afb5ceea2604db65ade875605ec0ce5898c077a9
+      {rubrique === "Nom" && <RechercheNom></RechercheNom>}
     </div>
   );
 }
