@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/briefcuisine/static/css/main.4b22faf1.css",
-    "main.js": "/briefcuisine/static/js/main.7a690b61.js",
+    "main.css": "/briefcuisine/static/css/main.728a7f4d.css",
+    "main.js": "/briefcuisine/static/js/main.f0e39edd.js",
     "static/js/787.422c2b4d.chunk.js": "/briefcuisine/static/js/787.422c2b4d.chunk.js",
     "static/media/bg.jpg": "/briefcuisine/static/media/bg.b0955f6f1a9576047105.jpg",
     "static/media/food.jpg": "/briefcuisine/static/media/food.9ef5a5423f0b1621cb48.jpg",
     "index.html": "/briefcuisine/index.html",
-    "main.4b22faf1.css.map": "/briefcuisine/static/css/main.4b22faf1.css.map",
-    "main.7a690b61.js.map": "/briefcuisine/static/js/main.7a690b61.js.map",
+    "main.728a7f4d.css.map": "/briefcuisine/static/css/main.728a7f4d.css.map",
+    "main.f0e39edd.js.map": "/briefcuisine/static/js/main.f0e39edd.js.map",
     "787.422c2b4d.chunk.js.map": "/briefcuisine/static/js/787.422c2b4d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4b22faf1.css",
-    "static/js/main.7a690b61.js"
+    "static/css/main.728a7f4d.css",
+    "static/js/main.f0e39edd.js"
   ]
 }
