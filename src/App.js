@@ -4,7 +4,9 @@ import { Favoris } from "./components/Favoris";
 import RechercheCategorie from "./components/RechercheCategorie";
 import RechercheIngredient from "./components/RechercheIngredient";
 import Navbar from "./components/Navbar";
-import {Accueil} from "./components/Accueil";
+import { Accueil } from "./components/Accueil";
+import { Footer } from "./components/Footer";
+
 function App() {
   const [data, setData] = useState(undefined);
 
@@ -19,7 +21,7 @@ function App() {
     const responseJson = await (response.json());
     setInput(responseJson)
     setCategorie("Recette") //ne pas toucher utile pour essai
-}
+  }
   useEffect(() => {
     // eslint-disable-next-line default-case
     switch (rubrique) {
@@ -55,31 +57,34 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar setRubrique={setRubrique}/>
-      
-      
-        <div>
-          <select
-            onClick={(e) => setRubrique(e.target.value)}
-            className="form-select w-auto ms-3"
-            id="floatingSelect"
-            aria-label="Floating label select example"
-          >
-            <option value={"Accueil"}>Rechercher par :</option>
-            {selector}
-          </select>
-        </div>
-        {rubrique === "Accueil" && <Accueil/>}
+      <Navbar setRubrique={setRubrique} />
 
-      {rubrique === "Favoris" && <Favoris/>}
 
-      {rubrique === "Categorie" && 
+      <div>
+        <select
+          onClick={(e) => setRubrique(e.target.value)}
+          className="form-select w-auto ms-3"
+          id="floatingSelect"
+          aria-label="Floating label select example"
+        >
+          <option value={"Accueil"}>Rechercher par :</option>
+          {selector}
+        </select>
+      </div>
+
+
+
+      {rubrique === "Accueil" && <Accueil />}
+
+      {rubrique === "Favoris" && <Favoris />}
+
+      {rubrique === "Categorie" &&
         <RechercheCategorie setRubrique={setRubrique} setCategorie={setCategorie} categorie={categorie} input={input} sendRecipe={sendRecipe} />
       }
-      {rubrique === "Ingredients" && 
+      {rubrique === "Ingredients" &&
         <RechercheIngredient setRubrique={setRubrique} />
       }
-      
+      <Footer />
     </div>
   );
 }
