@@ -1,31 +1,27 @@
 import { useEffect, useState } from "react";
 import "./AffichageRecette.css";
 
-
 export default function AffichageRecette({ input }) {
   //console.log(input.meals[0].strMeal); verification de l'emplacement de la donnée
+
   const recipe = input?.meals[0];
-  
-  const[favori,setFavori] = useState(JSON.parse(localStorage.getItem("stockage")) || []);
+  const [favori, setFavori] = useState(
+    JSON.parse(localStorage.getItem("stockage")) || []
+  );
 
-  const addFavori = (e) =>{
-    const stockage =[...favori];
+  const addFavori = (e) => {
+    const stockage = [...favori];
     const newKey = new Date().getTime();
-    stockage.push({no:newKey, recipe:input});
+    stockage.push({ no: newKey, recipe: input });
     setFavori(stockage);
-    localStorage.setItem("storage",JSON.stringify(stockage))
-  }
-
-
-
-
+    localStorage.setItem("storage", JSON.stringify(stockage));
+  };
 
   /*const newRecipe = [...recipe]; //non fctionnel car recipe non iterable !!voir console
     console.log(newRecipe);*/
 
   let ingredients = [];
   let measures = [];
-
 
   for (let i = 1; i < 21; i++) {
     // récupération des ingredients dans un seul array
