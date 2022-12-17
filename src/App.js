@@ -7,7 +7,7 @@ import Navbar from "./components/Navbar";
 import { Accueil } from "./components/Accueil";
 
 import RechercheNom from "./components/RechercheNom";
-import { Footer } from "./components/Footer";
+
 
 function App() {
   const [data, setData] = useState(undefined);
@@ -67,7 +67,7 @@ function App() {
 
       {rubrique === "Accueil" && <Accueil />}
 
-      {rubrique === "Favoris" && <Favoris />}
+      {rubrique === "Favoris" && <Favoris sendRecipe={sendRecipe}/>}
 
       {rubrique === "Categorie" && (
         <RechercheCategorie
@@ -84,7 +84,7 @@ function App() {
       {rubrique === "Nom" && (
         <RechercheNom  />
       )}
-      <Footer />
+    
     </div>
   );
 }

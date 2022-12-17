@@ -1,8 +1,6 @@
-import { useState } from "react";
-
 export function Favoris({ sendRecipe }) {
   const stockage = JSON.parse(localStorage.getItem("stockage"));
-  console.log(stockage[0].recipe.meals[0].strMeal);
+
   const vignetteFavori = stockage.map((data, i) => (
     <div
       onClick={(e) => sendRecipe(data.recipe.meals[0].idMeals)}
@@ -20,9 +18,8 @@ export function Favoris({ sendRecipe }) {
   ));
 
   return (
-    <div className="container justify-content-center mx-auto ">
+    <div className="container justify-content-center mx-auto inline-flex row row-cols-2 ">
       {vignetteFavori}
     </div>
   );
 }
-

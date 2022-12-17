@@ -14,7 +14,7 @@ export default function AffichageRecette({ input }) {
     const newKey = new Date().getTime();
     stockage.push({ no: newKey, recipe: input });
     setFavori(stockage);
-    localStorage.setItem("storage", JSON.stringify(stockage));
+    localStorage.setItem("stockage", JSON.stringify(stockage));
   };
 
   /*const newRecipe = [...recipe]; //non fctionnel car recipe non iterable !!voir console
@@ -69,7 +69,7 @@ export default function AffichageRecette({ input }) {
             <br />
             <a href={recipe.strSource}>Source</a>
             <div className="m-3">
-              <button onClick={addFavori}>Favoris</button>
+              <button onClick={(e)=>addFavori()}>Favoris</button>
             </div>
           </div>
         </div>
