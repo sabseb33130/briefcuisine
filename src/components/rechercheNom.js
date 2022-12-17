@@ -46,7 +46,7 @@ export default function RechercheNom(sendRecipe) {
       </div>
       <div className="container justify-content-center mx-auto inline-flex row row-cols-2">
         {nomRecette}
-        {messageErreur !== undefined && { messageErreur }}
+       
       </div>
     </div>
   );
