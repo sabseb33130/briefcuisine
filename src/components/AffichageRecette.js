@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./AffichageRecette.css";
 
 export default function AffichageRecette({ input }) {
@@ -54,7 +54,7 @@ export default function AffichageRecette({ input }) {
 
   return (
     <div>
-      <div className="mt-3">
+      <div className="mt-3 text-center">
         <h2 className="font-weight-bold text-danger">{recipe.strMeal}</h2>
       </div>
       <div className="row display-noflex justify-content-md-center text-center m-5">

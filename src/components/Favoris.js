@@ -1,9 +1,9 @@
 export function Favoris({ sendRecipe }) {
   const stockage = JSON.parse(localStorage.getItem("stockage"));
-
+  console.log(stockage[0].recipe.meals[0].idMeal)
   const vignetteFavori = stockage.map((data, i) => (
     <div
-      onClick={(e) => sendRecipe(data.recipe.meals[0].idMeals)}
+      onClick={(e) => sendRecipe(data.recipe.meals[0].idMeal)}
       key={i}
       className="card m-2 w-33 col-4"
       style={{ width: 21 + "rem", cursor: "pointer" }}

@@ -5,16 +5,12 @@ import RechercheCategorie from "./components/RechercheCategorie";
 import RechercheIngredient from "./components/RechercheIngredient";
 import Navbar from "./components/Navbar";
 import { Accueil } from "./components/Accueil";
-
+import AffichageRecette from "./components/AffichageRecette";
 import RechercheNom from "./components/RechercheNom";
 
 
 function App() {
-  const [data, setData] = useState(undefined);
-
   const [input, setInput] = useState("");
-
-  const [categorie, setCategorie] = useState("");
 
   const [rubrique, setRubrique] = useState("Accueil");
 
@@ -24,10 +20,10 @@ function App() {
     );
     const responseJson = await response.json();
     setInput(responseJson);
-    setCategorie("Recette"); //ne pas toucher utile pour essai
+    setRubrique("Recette");
   }
   useEffect(() => {
-    // eslint-disable-next-line default-case
+
     switch (rubrique) {
       case "Categorie":
         <RechercheCategorie />;
@@ -43,12 +39,12 @@ function App() {
         break;
     }
   }, [rubrique]);
-  const selector = ["Categorie", "Ingredients", "Nom"].map((data, i) => (
+  const selector = ["Categorie", "Favoris", "Nom"].map((data, i) => (
     <option key={i} value={data}>
       {data}
     </option>
   ));
-
+console.log(rubrique);
   return (
     <div className="App">
       <Navbar setRubrique={setRubrique} />
@@ -67,24 +63,22 @@ function App() {
 
       {rubrique === "Accueil" && <Accueil />}
 
-      {rubrique === "Favoris" && <Favoris sendRecipe={sendRecipe}/>}
+      {rubrique === "Favoris" && <Favoris sendRecipe={sendRecipe} />}
 
       {rubrique === "Categorie" && (
         <RechercheCategorie
-       
-          setCategorie={setCategorie}
-          categorie={categorie}
           input={input}
           sendRecipe={sendRecipe}
         />
       )}
       {rubrique === "Ingredients" && (
-        <RechercheIngredient/>
+        <RechercheIngredient />
       )}
       {rubrique === "Nom" && (
-        <RechercheNom  />
+        <RechercheNom sendRecipe={sendRecipe}/>
       )}
-    
+      {rubrique === "Recette" && <AffichageRecette input={input}></AffichageRecette>}
+
     </div>
   );
 }
