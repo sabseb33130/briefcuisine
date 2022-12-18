@@ -86,7 +86,7 @@ function App() {
       {rubrique === "Ingredients" &&
         <RechercheIngredient setRubrique={setRubrique} />
       }
->>>>>>> afb5ceea2604db65ade875605ec0ce5898c077a9
+
     </div>
   );
 }
