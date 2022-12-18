@@ -1,45 +1,37 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./AffichageRecette.css";
 
 export default function AffichageRecette({ input }) {
-  //console.log(input.meals[0].strMeal); verification de l'emplacement de la donnée
   const recipe = input?.meals[0];
+  //useState favori et const addFavori permettant de stocker en localStorage.
+  const [favori, setFavori] = useState(
+    JSON.parse(localStorage.getItem("stockage")) || []
+  );
 
-  const [favori,setFavori] = useState();
-
-let stockage = JSON.parse(localStorage.getItem('stockage')) || [];
-console.log(stockage);
-
-  if(favori){
-    stockage.push(input);
-    localStorage.setItem(`stockage`, JSON.stringify(stockage));
-}
-
-  /*const newRecipe = [...recipe]; //non fctionnel car recipe non iterable !!voir console
-    console.log(newRecipe);*/
+  const addFavori = (e) => {
+    const stockage = [...favori];
+    const newKey = stockage.length;
+    stockage.push({ no: newKey, recipe: input });
+    setFavori(stockage);
+    localStorage.setItem("stockage", JSON.stringify(stockage));
+  };
 
   let ingredients = [];
   let measures = [];
-
-
+  // récupération des ingredients dans un seul array
   for (let i = 1; i < 21; i++) {
-    // récupération des ingredients dans un seul array
     ingredients.push(eval(`recipe.strIngredient${i}`));
   }
-  let ingredientsFiltred = ingredients.filter((x) => !!x); //tri de l'array sans "",null,undefined,NaN
-
+  //tri de l'array ingredients sans "",null,undefined,NaN
+  let ingredientsFiltred = ingredients.filter((x) => !!x); 
+  // récupération des mesures dans un seul array
   for (let i = 1; i < 21; i++) {
-    // récupération des mesures dans un seul array
     measures.push(eval(`recipe.strMeasure${i}`));
   }
-  let measuresFiltred = measures.filter((x) => !!x); //tri de l'array sans "",null,undefined,NaN
+  //tri de l'array measures sans "",null,undefined,NaN
+  let measuresFiltred = measures.filter((x) => !!x);
 
-  /* console.log(eval(`recipe.strIngredient${12}`)); //test de la donnée
-    console.log(ingredientsFiltred);
-    console.log(eval(`recipe.strMeasure${15}`)); //test de la donnée
-    console.log(measuresFiltred); */
-
-  const lg = ingredientsFiltred.length; // choix de lg de ingredient pour corriger le probleme de filtre sur measures, avec " " !!
+  const lg = ingredientsFiltred.length;
   let ingredientsAndMeasures = [];
 
   for (let i = 0; i < lg; i++) {
@@ -47,8 +39,6 @@ console.log(stockage);
       measuresFiltred[i] + " of " + ingredientsFiltred[i]
     );
   }
-
-  //console.log(ingredientsAndMeasures); //test de la donnée
 
   const showMeasure = ingredientsAndMeasures.map((data, i) => (
     <li key={i} className="list-group-item">
@@ -58,7 +48,7 @@ console.log(stockage);
 
   return (
     <div>
-      <div className="mt-3">
+      <div className="mt-3 text-center">
         <h2 className="font-weight-bold text-danger">{recipe.strMeal}</h2>
       </div>
       <div className="row display-noflex justify-content-md-center text-center m-5">

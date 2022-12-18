@@ -3,25 +3,23 @@ import "./App.css";
 import { Favoris } from "./components/Favoris";
 import RechercheCategorie from "./components/RechercheCategorie";
 import RechercheIngredient from "./components/RechercheIngredient";
-import RechercheNom from "./components/RechercheNom";
 import Navbar from "./components/Navbar";
 import { Accueil } from "./components/Accueil";
-import { Footer } from "./components/Footer";
+import AffichageRecette from "./components/AffichageRecette";
+import RechercheNom from "./components/RechercheNom";
 
 function App() {
-  const [data, setData] = useState(undefined);
-
   const [input, setInput] = useState("");
-
-  const [categorie, setCategorie] = useState("");
 
   const [rubrique, setRubrique] = useState("Accueil");
 
   async function sendRecipe(idRecipe) {
-    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idRecipe}`);
-    const responseJson = await (response.json());
-    setInput(responseJson)
-    setCategorie("Recette") //ne pas toucher utile pour essai
+    const response = await fetch(
+      `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idRecipe}`
+    );
+    const responseJson = await response.json();
+    setInput(responseJson);
+    setRubrique("Recette");
   }
   useEffect(() => {
     // eslint-disable-next-line default-case
@@ -36,36 +34,24 @@ function App() {
         break;
       case "Nom":
         <RechercheNom />;
-      /* case "Nom": async function fetchData() {
-            const response = await fetch(
-              "https://www.themealdb.com/api/json/v1/1/search.php?s=a"
-            );
-            const responseJson = await response.json();
-            //console.log(responseJson) 
-      
-            //console.log(responseJson);
-            setRandom(responseJson);
-          }
-          fetchData();
-    
-            break; */
+
+        break;
     }
   }, [rubrique]);
-  const selector = ["Categorie", "Ingredients", "Nom"].map((data, i) => (
+  const selector = ["Categorie", "Favoris", "Nom"].map((data, i) => (
     <option key={i} value={data}>
       {data}
     </option>
   ));
-
+  console.log(rubrique);
   return (
     <div className="App">
       <Navbar setRubrique={setRubrique} />
 
-
       <div>
         <select
           onClick={(e) => setRubrique(e.target.value)}
-          className="form-select w-auto ms-3"
+          className="form-select w-auto ms-3 "
           id="floatingSelect"
           aria-label="Floating label select example"
         >
@@ -74,19 +60,18 @@ function App() {
         </select>
       </div>
 
+      {rubrique === "Accueil" && <Accueil sendRecipe={sendRecipe} />}
 
+      {rubrique === "Favoris" && <Favoris sendRecipe={sendRecipe} />}
 
-      {rubrique === "Accueil" && <Accueil />}
-
-      {rubrique === "Favoris" && <Favoris />}
-
-      {rubrique === "Categorie" &&
-        <RechercheCategorie setRubrique={setRubrique} setCategorie={setCategorie} categorie={categorie} input={input} sendRecipe={sendRecipe} />
-      }
-      {rubrique === "Ingredients" &&
-        <RechercheIngredient setRubrique={setRubrique} />
-      }
-
+      {rubrique === "Categorie" && (
+        <RechercheCategorie input={input} sendRecipe={sendRecipe} />
+      )}
+      {rubrique === "Ingredients" && <RechercheIngredient />}
+      {rubrique === "Nom" && <RechercheNom sendRecipe={sendRecipe} />}
+      {rubrique === "Recette" && (
+        <AffichageRecette input={input}></AffichageRecette>
+      )}
     </div>
   );
 }
