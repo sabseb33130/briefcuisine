@@ -61,7 +61,7 @@ console.log(rubrique);
         </select>
       </div>
 
-      {rubrique === "Accueil" && <Accueil />}
+      {rubrique === "Accueil" && <Accueil sendRecipe={sendRecipe}/>}
 
       {rubrique === "Favoris" && <Favoris sendRecipe={sendRecipe} />}
 

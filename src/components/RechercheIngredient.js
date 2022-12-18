@@ -16,12 +16,7 @@ export default function RechercheIngredient() {
     fetchData();
   }, []);
   console.log(random);
-  const selector1 = random?.meals.map((random, i) => (
-    <option key={i} value={i} onClick={() => setRandom(random?.strIngredient)}>
-      {random?.strIngredient}
-    </option>
-  ));
-
+  
   const test = random?.meals.map((random, i) => (
     <div
       key={i}
@@ -40,7 +35,7 @@ export default function RechercheIngredient() {
 
   return (
     <div>
-      <select className="form-select w-auto m-3">{selector1}</select>
+     <div><h4 className="text-center">Listes des différents ingrédients constituants les recettes</h4></div>
       <div className="container justify-content-center mx-auto inline-flex row row-cols-2">
         {test}
       </div>

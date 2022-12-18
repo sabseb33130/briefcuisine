@@ -34,7 +34,7 @@ export default function RechercheNom({ sendRecipe }) {
 
     return (
       <div>
-        <div className="input-group w-50 m-2">
+        <div className="input m-2">
           <input
             onChange={(e) => setNom(e.target.value)}
             type="text"
