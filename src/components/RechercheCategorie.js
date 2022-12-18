@@ -5,7 +5,7 @@ export default function RechercheCategorie({ sendRecipe }) {
   const [list, setList] = useState(undefined);
 
   const [categorie, setCategorie] = useState("");
-
+//Fetch de récupération des catégories de recette.
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(
@@ -17,7 +17,7 @@ export default function RechercheCategorie({ sendRecipe }) {
     }
     fetchData();
   }, []);
-
+// fetch de récupération des recetts par catégorie
   useEffect(() => {
     fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${categorie}`)
       .then((response) => response.json())
@@ -28,6 +28,7 @@ export default function RechercheCategorie({ sendRecipe }) {
         console.log(error);
       });
   }, [categorie]);
+// Affichage des catégorie en vignette
   const vignetteCategorie = data?.categories.map((data, i) => (
     <div
       onClick={(e) => setCategorie(data?.strCategory)}
@@ -46,6 +47,7 @@ export default function RechercheCategorie({ sendRecipe }) {
       </div>
     </div>
   ));
+//Affichage des recettes en format vignette
   const vignetteRecette = list?.map((data, i) => (
     <div
       onClick={(e) => sendRecipe(data.idMeal)}
@@ -61,7 +63,8 @@ export default function RechercheCategorie({ sendRecipe }) {
       />
     </div>
   ));
-  const selector = data?.categories.map((data, i) => (
+// mappind pour selecteur des recettes
+   const selector = data?.categories.map((data, i) => (
     <option key={i} value={data.strCategory}>
       {data?.strCategory}
     </option>

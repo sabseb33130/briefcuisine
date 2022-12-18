@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 export function Accueil({ sendRecipe }) {
   const [rand, setRand] = useState();
-
+//Fetche nous permettant de recupérer le random des recettes
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(
@@ -13,14 +13,15 @@ export function Accueil({ sendRecipe }) {
     }
     fetchData();
   }, []);
-
+//règle d'affichage des recettes
   const vignetteRecette = rand?.meals.map((data, i) => (
     <div onClick={(e) => sendRecipe(data.idMeal)} key={i}>
       <h2 className="text-danger fs-2">
         <strong>{data.strMeal}</strong>
+        <p className="text-dark fs-6">Pour voir la recette n'hésitez pas à cliquer</p>
       </h2>
 
-      <img src={data.strMealThumb} className="img-fluid" alt={data.strMeal} />
+      <img src={data.strMealThumb} className="img-fluid rounded-4 border border-dark  mb-2" alt={data.strMeal} />
     </div>
   ));
   return (
@@ -32,7 +33,7 @@ export function Accueil({ sendRecipe }) {
           faciles ou techniques, 100% testées et dévorées...
         </h1>
       </div>
-      <div className="">{vignetteRecette}</div>
+      <div className=""> {vignetteRecette}</div>
     </div>
   );
 }

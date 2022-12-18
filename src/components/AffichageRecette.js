@@ -3,6 +3,7 @@ import "./AffichageRecette.css";
 
 export default function AffichageRecette({ input }) {
   const recipe = input?.meals[0];
+  //useState favori et const addFavori permettant de stocker en localStorage.
   const [favori, setFavori] = useState(
     JSON.parse(localStorage.getItem("stockage")) || []
   );
