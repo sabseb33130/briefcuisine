@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-export function Accueil({sendRecipe}) {
+export function Accueil({ sendRecipe }) {
   const [rand, setRand] = useState();
 
   useEffect(() => {
@@ -8,17 +8,17 @@ export function Accueil({sendRecipe}) {
         "https://www.themealdb.com/api/json/v1/1/random.php"
       );
       const responseJson = await response.json();
-      //console.log(responseJson)
 
-      console.log(responseJson);
       setRand(responseJson);
     }
     fetchData();
   }, []);
 
   const vignetteRecette = rand?.meals.map((data, i) => (
-    <div onClick={(e) => sendRecipe(data.idMeal)} key={i} >
-      <h2 className="text-danger fs-2"><strong >{data.strMeal}</strong></h2>
+    <div onClick={(e) => sendRecipe(data.idMeal)} key={i}>
+      <h2 className="text-danger fs-2">
+        <strong>{data.strMeal}</strong>
+      </h2>
 
       <img src={data.strMealThumb} className="img-fluid" alt={data.strMeal} />
     </div>

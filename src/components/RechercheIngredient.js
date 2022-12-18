@@ -8,15 +8,12 @@ export default function RechercheIngredient() {
         "https://www.themealdb.com/api/json/v1/1/list.php?i=a"
       );
       const responseJson = await response.json();
-      //console.log(responseJson)
 
-      //console.log(responseJson);
       setRandom(responseJson);
     }
     fetchData();
   }, []);
-  console.log(random);
-  
+
   const test = random?.meals.map((random, i) => (
     <div
       key={i}
@@ -35,7 +32,11 @@ export default function RechercheIngredient() {
 
   return (
     <div>
-     <div><h4 className="text-center">Listes des différents ingrédients constituants les recettes</h4></div>
+      <div>
+        <h4 className="text-center">
+          Listes des différents ingrédients constituants les recettes
+        </h4>
+      </div>
       <div className="container justify-content-center mx-auto inline-flex row row-cols-2">
         {test}
       </div>

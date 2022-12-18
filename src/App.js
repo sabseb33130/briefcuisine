@@ -8,7 +8,6 @@ import { Accueil } from "./components/Accueil";
 import AffichageRecette from "./components/AffichageRecette";
 import RechercheNom from "./components/RechercheNom";
 
-
 function App() {
   const [input, setInput] = useState("");
 
@@ -23,7 +22,7 @@ function App() {
     setRubrique("Recette");
   }
   useEffect(() => {
-
+    // eslint-disable-next-line default-case
     switch (rubrique) {
       case "Categorie":
         <RechercheCategorie />;
@@ -44,7 +43,7 @@ function App() {
       {data}
     </option>
   ));
-console.log(rubrique);
+  console.log(rubrique);
   return (
     <div className="App">
       <Navbar setRubrique={setRubrique} />
@@ -61,24 +60,18 @@ console.log(rubrique);
         </select>
       </div>
 
-      {rubrique === "Accueil" && <Accueil sendRecipe={sendRecipe}/>}
+      {rubrique === "Accueil" && <Accueil sendRecipe={sendRecipe} />}
 
       {rubrique === "Favoris" && <Favoris sendRecipe={sendRecipe} />}
 
       {rubrique === "Categorie" && (
-        <RechercheCategorie
-          input={input}
-          sendRecipe={sendRecipe}
-        />
+        <RechercheCategorie input={input} sendRecipe={sendRecipe} />
       )}
-      {rubrique === "Ingredients" && (
-        <RechercheIngredient />
+      {rubrique === "Ingredients" && <RechercheIngredient />}
+      {rubrique === "Nom" && <RechercheNom sendRecipe={sendRecipe} />}
+      {rubrique === "Recette" && (
+        <AffichageRecette input={input}></AffichageRecette>
       )}
-      {rubrique === "Nom" && (
-        <RechercheNom sendRecipe={sendRecipe}/>
-      )}
-      {rubrique === "Recette" && <AffichageRecette input={input}></AffichageRecette>}
-
     </div>
   );
 }
