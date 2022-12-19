@@ -8,7 +8,6 @@ import { Accueil } from "./components/Accueil";
 import AffichageRecette from "./components/AffichageRecette";
 import RechercheNom from "./components/RechercheNom";
 
-
 function App() {
   const [input, setInput] = useState("");
 
@@ -23,7 +22,6 @@ function App() {
     setRubrique("Recette");
   }
   useEffect(() => {
-
     switch (rubrique) {
       case "Categorie":
         <RechercheCategorie />;
@@ -44,7 +42,7 @@ function App() {
       {data}
     </option>
   ));
-console.log(rubrique);
+
   return (
     <div className="App">
       <Navbar setRubrique={setRubrique} />
@@ -66,21 +64,14 @@ console.log(rubrique);
       {rubrique === "Favoris" && <Favoris sendRecipe={sendRecipe} />}
 
       {rubrique === "Categorie" && (
-        <RechercheCategorie
-          input={input}
-          sendRecipe={sendRecipe}
-        />
+        <RechercheCategorie input={input} sendRecipe={sendRecipe} />
       )}
-      {rubrique === "Ingredients" && (
-        <RechercheIngredient />
+      {rubrique === "Ingredients" && <RechercheIngredient />}
+      {rubrique === "Nom" && <RechercheNom sendRecipe={sendRecipe} />}
+      {rubrique === "Recette" && (
+        <AffichageRecette input={input}></AffichageRecette>
       )}
-      {rubrique === "Nom" && (
-        <RechercheNom sendRecipe={sendRecipe}/>
-      )}
-      {rubrique === "Recette" && <AffichageRecette input={input}></AffichageRecette>}
-
     </div>
   );
 }
-
 export default App;
