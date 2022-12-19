@@ -63,7 +63,7 @@ export default function AffichageRecette({ input }) {
             <br />
             <a href={recipe.strSource}>Source</a>
             <div className="m-3">
-              <button className= "btn btn-primary" onClick={() => setFavori(true)}>Favoris</button>
+              <button className= "btn btn-primary" onClick={() => addFavori(true)}>Favoris</button>
             </div>
           </div>
         </div>

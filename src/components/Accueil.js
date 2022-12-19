@@ -15,7 +15,7 @@ export function Accueil({ sendRecipe }) {
   }, []);
 //règle d'affichage des recettes
   const vignetteRecette = rand?.meals.map((data, i) => (
-    <div onClick={(e) => sendRecipe(data.idMeal)} key={i}>
+    <div  style={{ cursor: "pointer" }} onClick={(e) => sendRecipe(data.idMeal)} key={i}>
       <h2 className="text-danger fs-2">
         <strong>{data.strMeal}</strong>
         <p className="text-dark fs-6">Pour voir la recette n'hésitez pas à cliquer</p>
