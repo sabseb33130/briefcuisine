@@ -4,11 +4,9 @@ export default function Navbar({ setRubrique }) {
   return (
     <div>
       <nav className="navbar ">
-
-      <form className="container-fluid justify-content-start">
-       
+        <form className="container-fluid justify-content-start">
           <button
-            onClick={() => setRubrique("Accueil")} 
+            onClick={() => setRubrique("Accueil")}
             className="btn btn-dark m-1 btn-sm"
             type="button"
           >
@@ -35,9 +33,7 @@ export default function Navbar({ setRubrique }) {
           >
             Ingredients
           </button>
-          
-       
-      </form>
+        </form>
       </nav>
       <h1 className="display-3 text-center ">
         RECETTES MORTELLES <img src="favicon.png" alt="logo" />

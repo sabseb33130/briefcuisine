@@ -1,6 +1,8 @@
 export function Favoris({ sendRecipe }) {
-  const stockage = JSON.parse(localStorage.getItem("stockage"));
-  console.log(stockage[0].recipe.meals[0].idMeal)
+
+  try{ 
+    const stockage = JSON.parse(localStorage.getItem("stockage"));
+//Récupération du localStorage et traitement visuel des infos stockées
   const vignetteFavori = stockage.map((data, i) => (
     <div
       onClick={(e) => sendRecipe(data.recipe.meals[0].idMeal)}
@@ -22,4 +24,13 @@ export function Favoris({ sendRecipe }) {
       {vignetteFavori}
     </div>
   );
+} catch{
+  return(
+   <div className="text-center m-3">
+        <meta http-equiv="refresh" content="5"></meta>
+        <strong className="text-danger fs-2">Pas de favoris pour l'instant !!</strong>
+        <p>La page va se recharger toute seule !</p>
+      </div>
+    );
+}
 }

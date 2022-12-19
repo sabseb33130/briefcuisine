@@ -42,7 +42,6 @@ function App() {
       {data}
     </option>
   ));
-
   return (
     <div className="App">
       <Navbar setRubrique={setRubrique} />
@@ -59,7 +58,7 @@ function App() {
         </select>
       </div>
 
-      {rubrique === "Accueil" && <Accueil />}
+      {rubrique === "Accueil" && <Accueil sendRecipe={sendRecipe} />}
 
       {rubrique === "Favoris" && <Favoris sendRecipe={sendRecipe} />}
 

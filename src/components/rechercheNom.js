@@ -34,7 +34,7 @@ export default function RechercheNom({ sendRecipe }) {
 
     return (
       <div>
-        <div className="input-group w-50 m-2">
+        <div className="input m-2">
           <input
             onChange={(e) => setNom(e.target.value)}
             type="text"
@@ -52,8 +52,6 @@ export default function RechercheNom({ sendRecipe }) {
       </div>
     );
   } catch {
-    //setTimeout(window.location.reload(),10000);
-
     return (
       <div className="text-center m-3">
         <meta http-equiv="refresh" content="5"></meta>

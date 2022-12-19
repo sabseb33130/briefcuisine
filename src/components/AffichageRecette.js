@@ -2,38 +2,34 @@ import { useState } from "react";
 import "./AffichageRecette.css";
 
 export default function AffichageRecette({ input }) {
-  //console.log(input.meals[0].strMeal); verification de l'emplacement de la donnée
-
   const recipe = input?.meals[0];
+  //useState favori et const addFavori permettant de stocker en localStorage.
   const [favori, setFavori] = useState(
     JSON.parse(localStorage.getItem("stockage")) || []
   );
 
   const addFavori = (e) => {
     const stockage = [...favori];
-    const newKey = new Date().getTime();
+    const newKey = stockage.length;
     stockage.push({ no: newKey, recipe: input });
     setFavori(stockage);
     localStorage.setItem("stockage", JSON.stringify(stockage));
   };
 
-  /*const newRecipe = [...recipe]; //non fctionnel car recipe non iterable !!voir console
-    console.log(newRecipe);*/
-
   let ingredients = [];
   let measures = [];
-
+  // récupération des ingredients dans un seul array
   for (let i = 1; i < 21; i++) {
-    // récupération des ingredients dans un seul array
     ingredients.push(eval(`recipe.strIngredient${i}`));
   }
-  let ingredientsFiltred = ingredients.filter((x) => !!x); //tri de l'array sans "",null,undefined,NaN
-
+  //tri de l'array ingredients sans "",null,undefined,NaN
+  let ingredientsFiltred = ingredients.filter((x) => !!x); 
+  // récupération des mesures dans un seul array
   for (let i = 1; i < 21; i++) {
-    // récupération des mesures dans un seul array
     measures.push(eval(`recipe.strMeasure${i}`));
   }
-  let measuresFiltred = measures.filter((x) => !!x); //tri de l'array sans "",null,undefined,NaN
+  //tri de l'array measures sans "",null,undefined,NaN
+  let measuresFiltred = measures.filter((x) => !!x);
 
   const lg = ingredientsFiltred.length;
   let ingredientsAndMeasures = [];
@@ -43,8 +39,6 @@ export default function AffichageRecette({ input }) {
       measuresFiltred[i] + " of " + ingredientsFiltred[i]
     );
   }
-
-  //console.log(ingredientsAndMeasures); //test de la donnée
 
   const showMeasure = ingredientsAndMeasures.map((data, i) => (
     <li key={i} className="list-group-item">
@@ -69,7 +63,7 @@ export default function AffichageRecette({ input }) {
             <br />
             <a href={recipe.strSource}>Source</a>
             <div className="m-3">
-              <button onClick={(e)=>addFavori()}>Favoris</button>
+              <button className= "btn btn-primary" onClick={() => addFavori(true)}>Favoris</button>
             </div>
           </div>
         </div>
