@@ -27,6 +27,11 @@ export function Favoris({ sendRecipe }) {
         <div className="text-center">
           <button
             className="btn btn-warning btn-sm"
+            style={{
+              " --bs-btn-padding-y": 0.25 + "rem",
+              " --bs-btn-padding-x": 0.25 + "rem",
+              "--bs-btn-font-size": 0.75 + "rem",
+            }}
             onClick={(e) => setNoFav(data.no)}
           >
             Supprimer ce Favori
