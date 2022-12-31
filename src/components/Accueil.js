@@ -20,9 +20,9 @@ export function Accueil({ sendRecipe }) {
         <strong>{data.strMeal}</strong>
         <p className="text-dark fs-6">Pour voir la recette n'hésitez pas à cliquer</p>
       </h2>
-
-      <img src={data.strMealThumb} className="img-fluid rounded-4 border border-dark  mb-2" alt={data.strMeal} />
-    </div>
+      
+      <img src={data.strMealThumb} className="img-fluid rounded-4 border border-dark  mb-2 " alt={data.strMeal} />
+      </div>
   ));
   return (
     <div className="container text-center">
