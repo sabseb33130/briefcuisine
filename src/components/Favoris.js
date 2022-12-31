@@ -8,7 +8,7 @@ export function Favoris({ sendRecipe }) {
     const stockage = JSON.parse(localStorage.getItem("stockage"));
     //Récupération du localStorage et traitement visuel des infos stockées
     const vignetteFavori = stockage.map((data, i) => (
-      <div className="col-sm-12 .col-md-5 .col-lg-6 mb-5">
+      <div>
         <div
           onClick={(e) => {
             sendRecipe(data.recipe.meals[0].idMeal);
@@ -18,19 +18,17 @@ export function Favoris({ sendRecipe }) {
           style={{ cursor: "pointer" }}
         >
           <h3>{data.recipe.meals[0].strMeal}</h3>
-          <div className="text-center">
-            <button
-              className="btn btn-warning btn-sm mb-3"
-              style={{
-                " --bs-btn-padding-y": 0.25 + "rem",
-                " --bs-btn-padding-x": 0.25 + "rem",
-                "--bs-btn-font-size": 0.75 + "rem",
-              }}
-              onClick={(e) => setNoFav(data.no)}
-            >
-              Supprimer ce Favori
-            </button>
-          </div>
+          <button
+            className="btn btn-warning btn-sm mb-3"
+            style={{
+              " --bs-btn-padding-y": 0.25 + "rem",
+              " --bs-btn-padding-x": 0.25 + "rem",
+              "--bs-btn-font-size": 0.75 + "rem",
+            }}
+            onClick={(e) => setNoFav(data.no)}
+          >
+            Supprimer ce Favori
+          </button>
           <img
             src={data.recipe.meals[0].strMealThumb}
             className="card-img-top"
